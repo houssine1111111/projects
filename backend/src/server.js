@@ -9,6 +9,7 @@ const createError = require('http-errors');
 const { connectToDatabase, disconnectFromDatabase } = require('./config/db');
 
 const authRoutes = require('./routes/auth.routes');
+const employeeRoutes = require('./routes/employees.routes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(cookieParser());
 app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/employees', employeeRoutes);
 
 // 404 handler
 app.use((_req, _res, next) => {
